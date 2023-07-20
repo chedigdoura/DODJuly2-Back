@@ -99,3 +99,18 @@ export const updateProduct = async (req, res) => {
       .json({ message: "Internal Server Error", error: error.message });
   }
 };
+
+export const getProductsBySearch = async (req, res) => {
+
+  const { searchQuery } = req.query;
+  console.log("from controller", searchQuery);
+  try {
+    const title = new RegExp(searchQuery, "i");
+    const products = await ProductModal.find({ title });
+    res.json(products);
+  } catch (error) {
+    res
+      .status(404)
+      .json({ message: "Something went wrong with the product search" });
+  }
+};

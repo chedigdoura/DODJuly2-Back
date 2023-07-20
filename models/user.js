@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
   googleId: { type: String, required: false },
   //Password et googleId are not required because i'll be using the GoogleAPI
   id: { type: String },
+  role: { type: String, default: "User" },
 });
 
 export default mongoose.model("User", userSchema);
